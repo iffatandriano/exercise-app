@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getMyPlaylist } from "../../services/git";
 import moment from "moment";
 import "./index.css";
+import Images from "../../components/ImagesComponent";
+import Album from "../../components/AlbumComponent";
+import Artist from "../../components/ArtistComponent";
 
 function Home() {
   useEffect(() => {
@@ -30,29 +33,27 @@ function Home() {
       <div className="albums-track" id="albums-track">
         {playlist.map((playlist) => (
           <div className="playlist">
-            <img
+            <Images
               className="pl_image"
-              src="https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b"
-              alt=""
+              urlImage="https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b"
             />
             <div className="description-playlist">
-              <span className="title-album">ALBUM</span>
-              <span className="title-song">{playlist.album.name}</span>
+              <Album className="title-album" children="ALBUM" />
+              <Album className="title-song" children={playlist.album.name} />
               <div className="album-description">
-                <img
+                <Images
                   className="artist-icon"
-                  src="https://i.scdn.co/image/6dd0ffd270903d1884edf9058c49f58b03db893d"
-                  alt=""
+                  urlImage="https://i.scdn.co/image/6dd0ffd270903d1884edf9058c49f58b03db893d"
                 />
-                <span className="artist-name">Queen</span>
-                <span className="artist-year">
+                <Artist className="artist-name" children="Queen" />
+                <Artist className="artist-year">
                   &#8226; {moment(playlist.album.release_date).format("YYYY")}{" "}
                   &#8226;
-                </span>
-                <span className="artist-song">
+                </Artist>
+                <Artist className="artist-song">
                   {playlist.album.total_tracks} songs,
-                </span>
-                <span className="song-minutes">1 hr 19 min</span>
+                </Artist>
+                <Artist className="song-minutes" children="1 hr 19 min" />
               </div>
             </div>
           </div>
