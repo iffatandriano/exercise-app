@@ -2,7 +2,7 @@
 .container-footer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin-top: 10px;
 }
@@ -15,6 +15,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   /* align-items: center; */
 }
@@ -26,6 +27,7 @@
   background-color: #711a75;
   width: 600px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .pl_image {
@@ -70,7 +72,7 @@
 
 .artist-name {
   font-weight: bold;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .artist-year {
