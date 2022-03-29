@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.search-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form-playlist {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.input-playlist {
+  border-radius: 10px;
+  height: 30px;
+}
+
+.search-playlist {
+  background-color: #1db954;
+  margin-left: 10px;
+  border-radius: 10px;
+  width: 80px;
+  height: 30px;
+  color: white;
+  text-decoration: none;
+  border: gray;
+}
