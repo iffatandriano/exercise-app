@@ -17,6 +17,10 @@ function App() {
       localStorage.setItem("token", _token);
     }
 
+    setTimeout(() => {
+      localStorage.removeItem("token");
+    }, 3600000);
+
     console.log("My Token", token);
   };
 
@@ -24,7 +28,9 @@ function App() {
     <div className="App">
       {getMyToken()}
       {!localStorage.getItem("token") && <Login />}
-      {localStorage.getItem("token") && <Search token={token} />}
+      {localStorage.getItem("token") && (
+        <Search token={localStorage.getItem("token")} />
+      )}
     </div>
   );
 }

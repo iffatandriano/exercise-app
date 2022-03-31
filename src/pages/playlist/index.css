@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 10px;
   /* align-items: center; */
 }
 
@@ -29,6 +30,52 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+
+.button-select {
+  /* vertical-align: middle; */
+  /* text-align: center; */
+  border-style: none;
+  color: white;
+  background-color: #00c897;
+  height: 35px;
+  width: 80px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.button-unselected {
+  /* vertical-align: middle; */
+  /* text-align: center; */
+  border-style: none;
+  color: white;
+  background-color: #d82148;
+  height: 35px;
+  width: 80px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* .button-select > button {
+  width: 200px;
+  height: 40px;
+  margin-top: 5px;
+} */
 
 .pl_image {
   height: 180px;
@@ -47,6 +94,7 @@
   text-align: left;
   color: white;
   font-weight: bold;
+  font-size: 12px;
 }
 
 .title-song {

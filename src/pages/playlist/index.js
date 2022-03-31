@@ -7,36 +7,50 @@ import Album from "../../components/Track/AlbumComponent";
 import Artist from "../../components/Track/ArtistComponent";
 // import dataSpotify from "../../utils/data";
 
-function Playlist({ playlist }) {
+const Playlist = ({ key, plId, pl, selectedHandle, selectedItems }) => {
   return (
     <div className="container-footer">
+      {/* {console.log(pl.id)} */}
       <div className="albums-track" id="albums-track">
-        {playlist.albums.items !== undefined &&
-          playlist.albums.items.map((playlist, index) => (
-            <div className="playlist" key={index}>
-              <Images className="pl_image" urlImage={playlist.images[1].url} />
+        {pl !== undefined && (
+          <>
+            <div className="playlist">
+              <Images className="pl_image" urlImage={pl.images[1].url} />
               <div className="description-playlist">
                 <Album className="title-album" children="ALBUM" />
-                <Album className="title-song" children={playlist.name} />
+                <Album className="title-song" children={pl.name} />
                 <div className="album-description">
                   <Artist
                     className="artist-name"
-                    children={playlist.artists[0].name}
+                    children={pl.artists[0].name}
                   />
                   <Artist className="artist-year">
-                    &#8226; {moment(playlist.release_date).format("YYYY")}{" "}
-                    &#8226;
+                    &#8226; {moment(pl.release_date).format("YYYY")} &#8226;
                   </Artist>
                   <Artist className="artist-song">
-                    {playlist.total_tracks} songs,
+                    {pl.total_tracks} songs,
                   </Artist>
                 </div>
+                {/* {console.log(selectButton)} */}
+                <button
+                  className={
+                    pl.isSelected ? "button-unselected" : "button-select"
+                  }
+                  onClick={
+                    pl.isSelected
+                      ? () => selectedHandle(false, plId)
+                      : () => selectedHandle(true, plId)
+                  }
+                >
+                  {pl.isSelected ? "UNSELECT" : "SELECT"}
+                </button>
               </div>
             </div>
-          ))}
+          </>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Playlist;

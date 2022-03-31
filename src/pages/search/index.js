@@ -1,73 +1,100 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Playlist from "../playlist";
 import "./index.css";
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlist: [],
-      token: this.props.token,
-      searchKey: "",
-      errors: "",
-      checkInPlaylist: 0,
-    };
-  }
+const Search = ({ token }) => {
+  const [playlist, setPlaylist] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+  const [errors, setErrors] = useState("");
+  const [checkInPlaylist, setcheckInPlaylist] = useState(0);
+  const [selectedItems, setSelectedItems] = useState(false);
 
-  searchArtist = async (e) => {
-    e.preventDefault();
-    this.setState({ checkInPlaylist: 0 });
-    const { searchKey } = this.state;
-    const token = localStorage.getItem("token");
-    const { data, status, statusText } = await axios.get(
-      "https://api.spotify.com/v1/search",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          q: searchKey,
-          type: "album",
-          limit: 6,
-        },
+  useEffect(() => {
+    console.log("running");
+  }, []);
+
+  const searchArtist = async (e) => {
+    try {
+      e.preventDefault();
+
+      const { data, status, statusText } = await axios.get(
+        "https://api.spotify.com/v1/search",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            q: searchKey,
+            type: "album",
+            limit: 6,
+          },
+        }
+      );
+
+      let arr = data.albums.items.map((playlist, index) => {
+        playlist.isSelected = false;
+        return { ...playlist };
+      });
+
+      if (status !== 200) {
+        setErrors(statusText);
+        setcheckInPlaylist(0);
+      } else {
+        setPlaylist(arr);
+        setcheckInPlaylist(1);
       }
-    );
-
-    var playlist = data;
-    if (status !== 200) {
-      let errors = statusText;
-      this.setState({ errors, checkInPlaylist: 0 });
+    } catch (error) {
+      console.error(error);
     }
-    // console.log(playlist);
-    this.setState({ playlist: playlist, checkInPlaylist: 1 });
   };
 
-  render() {
-    const { playlist, checkInPlaylist } = this.state;
-    // console.log(playlist);
-    return (
-      <div className="container">
-        <span className="search-title">FIND YOUR ALBUM ON SPOTIFY</span>
-        <div className="form-playlist">
-          <form onSubmit={this.searchArtist}>
-            <input
-              type="text"
-              className="input-playlist"
-              placeholder="Typing album names"
-              onChange={(e) => this.setState({ searchKey: e.target.value })}
-            />
-            <button className="search-playlist" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-        <div className="albums">
-          {checkInPlaylist > 0 && <Playlist playlist={playlist} />}
-        </div>
+  const selectedHandle = (value, id) => {
+    let arr = playlist.map((pl) => {
+      if (pl.id === id) {
+        pl.isSelected = !pl.isSelected;
+      }
+
+      return { ...pl };
+    });
+    setPlaylist(arr);
+    setSelectedItems(value);
+  };
+
+  return (
+    <div className="container">
+      <span className="search-title">FIND YOUR ALBUM ON SPOTIFY</span>
+      <div className="form-playlist">
+        <form>
+          <input
+            type="text"
+            className="input-playlist"
+            placeholder="Typing album names"
+            onChange={(e) => setSearchKey(e.target.value)}
+          />
+          <button
+            className="search-playlist"
+            type="submit"
+            onClick={(e) => searchArtist(e)}
+          >
+            Search
+          </button>
+        </form>
       </div>
-    );
-  }
-}
+      <div className="albums">
+        {checkInPlaylist > 0 &&
+          playlist.map((pl, index) => (
+            <Playlist
+              key={pl.id}
+              plId={pl.id}
+              pl={pl}
+              selectedHandle={(value, id) => selectedHandle(value, id)}
+              selectedItems={selectedItems}
+            />
+          ))}
+      </div>
+    </div>
+  );
+};
 
 export default Search;
