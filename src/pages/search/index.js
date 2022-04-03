@@ -9,10 +9,15 @@ const Search = ({ token }) => {
   const [errors, setErrors] = useState("");
   const [checkInPlaylist, setcheckInPlaylist] = useState(0);
   const [selectedItems, setSelectedItems] = useState(false);
+  const [albums, setAlbums] = useState([]);
 
-  useEffect(() => {
-    console.log("running");
-  }, []);
+  // useEffect(() => {
+  //   const mergedplaylist = playlist.map((uri) => ({
+  //     ...uri,
+  //     isSelected: selectedTrack.find((e) => e === uri);
+  //   });
+  //   setMergedPlaylist(mergedplaylist);
+  // }, [playlist]);
 
   const searchArtist = async (e) => {
     try {
@@ -32,16 +37,16 @@ const Search = ({ token }) => {
         }
       );
 
-      let arr = data.albums.items.map((playlist, index) => {
-        playlist.isSelected = false;
-        return { ...playlist };
-      });
-
       if (status !== 200) {
         setErrors(statusText);
         setcheckInPlaylist(0);
       } else {
-        setPlaylist(arr);
+        if (playlist.length > 0) {
+          playlist.find((e) => e.isSelected);
+          setPlaylist(data.albums.items);
+        } else {
+          setPlaylist(data.albums.items);
+        }
         setcheckInPlaylist(1);
       }
     } catch (error) {
