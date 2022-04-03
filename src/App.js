@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App";
+import Homes from "./pages/homes";
 import Login from "./pages/login";
-import Search from "./pages/search";
+// import Search from "./pages/search";
 import { getTokenFromResponse } from "./utils/spotify";
 
 function App() {
@@ -24,12 +25,16 @@ function App() {
     console.log("My Token", token);
   };
 
+  useEffect(() => {
+    getMyToken();
+  }, [token]);
+
   return (
     <div className="App">
-      {getMyToken()}
       {!localStorage.getItem("token") && <Login />}
       {localStorage.getItem("token") && (
-        <Search token={localStorage.getItem("token")} />
+        // <Search token={localStorage.getItem("token")} />
+        <Homes access_token={token} />
       )}
     </div>
   );
