@@ -16,7 +16,7 @@ function Homes({ access_token }) {
   const [listPlaylist, setListPlaylist] = useState([]);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    if (!access_token) {
       <Login />;
     } else {
       getCurrentProfile();
@@ -33,10 +33,10 @@ function Homes({ access_token }) {
   const getCurrentProfile = async () => {
     try {
       // const my_token = localStorage.getItem("token");
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
       const { data, status, statusText } = await url_spotify.get("/me", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
 
@@ -58,7 +58,7 @@ function Homes({ access_token }) {
   const createPlaylist = async (e) => {
     try {
       e.preventDefault();
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
       let data_playlist = {
         name: "New Playlist",
         description: "New playlist description",
@@ -70,7 +70,7 @@ function Homes({ access_token }) {
         data_playlist,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${access_token}`,
           },
         }
       );
@@ -94,13 +94,13 @@ function Homes({ access_token }) {
 
   const getUsersPlaylist = async () => {
     try {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 
       const { data, status, statusText } = await url_spotify.get(
         `/users/${userId}/playlists`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${access_token}`,
           },
         }
       );
@@ -122,13 +122,13 @@ function Homes({ access_token }) {
   const getLastPlaylist = async () => {
     try {
       let playlist_id = newPlaylist.id;
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 
       const { data, status, statusText } = await url_spotify.get(
         `/playlists/${playlist_id}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${access_token}`,
           },
         }
       );
@@ -151,13 +151,13 @@ function Homes({ access_token }) {
   const getPlaylistTrack = async () => {
     try {
       let playlist_id = newPlaylist.id;
-      let token = localStorage.getItem("token");
+      // let token = localStorage.getItem("token");
 
       const { data, status, statusText } = await url_spotify.get(
         `/playlists/${playlist_id}/tracks`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${access_token}`,
           },
         }
       );
