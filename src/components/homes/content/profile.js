@@ -1,9 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 
 function Profile({ images_url, profile_name }) {
+  const history = useHistory();
   const handleLogOut = () => {
     localStorage.removeItem("token");
+    history.push("/login");
   };
   return (
     <button

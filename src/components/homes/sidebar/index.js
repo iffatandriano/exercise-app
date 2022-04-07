@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { PlusCircleIcon, HomeIcon } from "@heroicons/react/outline";
 // import { url_spotify } from "../../../lib/axios";
 
@@ -11,13 +12,15 @@ function Sidebar({ sidebarClickHandle, createPlaylist, list_playlist }) {
           alt="logos spotify"
           className="h-14"
         />
+        {/* <Link to="/" className="space-x-2"> */}
         <button
           className="flex items-center space-x-2 hover:text-white"
-          onClick={(e) => sidebarClickHandle(e, "home")}
+          onClick={(e) => sidebarClickHandle(e, "homes")}
         >
           <HomeIcon className="h-5 w-5" />
           <p>Home</p>
         </button>
+        {/* </Link> */}
         {/* <button
           onClick={(e) => sidebarClickHandle(e, "search")}
           className="flex items-center space-x-2 hover:text-white"
@@ -30,8 +33,10 @@ function Sidebar({ sidebarClickHandle, createPlaylist, list_playlist }) {
           className="flex items-center space-x-2 hover:text-white"
           onClick={(e) => createPlaylist(e)}
         >
+          {/* <Link to="/create-playlist"> */}
           <PlusCircleIcon className="h-5 w-5" />
           <p>Create playlist</p>
+          {/* </Link> */}
         </button>
         <hr className="border-t-[0.1px] border-gray-900" />
         <div className="mt-6 text-white">
