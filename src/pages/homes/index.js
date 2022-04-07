@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, Link, withRouter } from "react-router-dom";
 import Profile from "../../components/homes/content/profile";
 import Sidebar from "../../components/homes/sidebar";
 import { url_spotify } from "../../lib/axios";
-import Login from "../login";
 import CreatePlaylist from "./playlist/create-playlist";
 
-function Homes({ access_token }) {
-  const [sidebarClick, setSidebarClick] = useState("");
+// spotify
+import { myAccessToken } from "../../middleware/store/action";
+import { getTokenFromResponse } from "../../utils/spotify";
+import { useDispatch, useSelector } from "react-redux";
+
+function Homes() {
+  const [sidebarClick, setSidebarClick] = useState("homes");
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -14,20 +19,48 @@ function Homes({ access_token }) {
   const [listTrack, setListTrack] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [listPlaylist, setListPlaylist] = useState([]);
+  const history = useHistory();
+
+  const [token, setToken] = useState(null);
+  const dispatch = useDispatch();
+  const access_token = useSelector((state) => state.token);
+
+  const getMyToken = () => {
+    const hash = getTokenFromResponse();
+    window.location.hash = "";
+    let _token = hash.access_token;
+
+    if (_token) {
+      setToken(_token);
+      dispatch(myAccessToken(_token));
+      localStorage.setItem("token", _token);
+    }
+
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      dispatch(myAccessToken(""));
+    }, 3600000);
+  };
 
   useEffect(() => {
-    if (!access_token) {
-      <Login />;
+    getMyToken();
+  }, [token, access_token]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      history.push("/login");
     } else {
+      getMyToken();
       getCurrentProfile();
       getUsersPlaylist();
       getPlaylistTrack();
     }
-  }, []);
+  }, [access_token]);
 
   const sidebarClickHandle = (e, value) => {
     e.preventDefault();
     setSidebarClick(value);
+    history.push("/");
   };
 
   const getCurrentProfile = async () => {
@@ -86,6 +119,9 @@ function Homes({ access_token }) {
         setNewPlaylist(new_playlist);
         setSidebarClick("new_playlist");
         getUsersPlaylist();
+        // console.log(history);
+        // history.push("/create-playlist");
+        // history.push(`/create-playlist/${new_playlist.id}`);
       }
     } catch (error) {
       console.error(error);
@@ -183,17 +219,15 @@ function Homes({ access_token }) {
           createPlaylist={(e) => createPlaylist(e)}
           list_playlist={listPlaylist}
         />
-        {sidebarClick === "home" && (
-          <>
-            <div className="flex flex-grow">
-              <header className="absolute top-5 right-8">
-                <Profile images_url={imageUrl} profile_name={userName} />
-              </header>
-              <div className="flex items-center justify-center">
-                <p className="text-white ml-auto">Welcome...</p>
-              </div>
+        {sidebarClick === "homes" && (
+          <div className="flex flex-grow">
+            <header className="absolute top-5 right-8">
+              <Profile images_url={imageUrl} profile_name={userName} />
+            </header>
+            <div className="flex items-center justify-center">
+              <p className="text-white ml-auto">Welcome...</p>
             </div>
-          </>
+          </div>
         )}
         {sidebarClick === "new_playlist" && (
           <CreatePlaylist
@@ -214,4 +248,4 @@ function Homes({ access_token }) {
   );
 }
 
-export default Homes;
+export default withRouter(Homes);

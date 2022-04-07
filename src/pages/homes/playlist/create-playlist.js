@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, withRouter } from "react-router-dom";
 import {
   // ChevronDownIcon,
   //   PlusIcon,
@@ -12,7 +13,7 @@ import DialogChangeDetails from "../../../components/homes/content/playlist/Dial
 import { url_spotify } from "../../../lib/axios";
 import TrackPlaylist from "../../../components/homes/content/playlist/TrackPlaylist";
 import Profile from "../../../components/homes/content/profile";
-import Login from "../../login";
+// import Login from "../../login";
 // import millisToMinutesAndSeconds from "../../../utils/millisToMinutesAndSeconds";
 
 function CreatePlaylist({
@@ -31,10 +32,10 @@ function CreatePlaylist({
   const [namePlaylist, setNamePlaylist] = useState("");
   const [descriptionPlaylist, setDescriptionPlaylist] = useState("");
   //   const [isLoading, setIsLoading] = useState(false);
-
+  const history = useHistory();
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      <Login />;
+      history.push("/login");
     }
   }, []);
 
@@ -139,4 +140,4 @@ function CreatePlaylist({
   );
 }
 
-export default CreatePlaylist;
+export default withRouter(CreatePlaylist);

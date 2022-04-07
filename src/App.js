@@ -1,49 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import "./App";
-import Homes from "./pages/homes";
-import Login from "./pages/login";
-// import Search from "./pages/search";
-import { getTokenFromResponse } from "./utils/spotify";
+import Routes from "./Routes";
 
-// redux action
-import { myAccessToken } from "./middleware/store/action";
+// redux
+import { Provider } from "react-redux";
+import store from "./middleware/store";
+
+export const browserHistory = createBrowserHistory();
 
 function App() {
-  const [token, setToken] = useState(null);
-  const dispatch = useDispatch();
-  const access_token = useSelector((state) => state.token);
-  console.log("token masuk ke redux", access_token);
-
-  const getMyToken = () => {
-    const hash = getTokenFromResponse();
-    window.location.hash = "";
-    let _token = hash.access_token;
-
-    if (_token) {
-      setToken(_token);
-      dispatch(myAccessToken(_token));
-      localStorage.setItem("token", _token);
-    }
-
-    setTimeout(() => {
-      localStorage.removeItem("token");
-      dispatch(myAccessToken(""));
-    }, 3600000);
-  };
-
-  useEffect(() => {
-    getMyToken();
-  }, [token]);
-
   return (
-    <div className="App">
-      {!access_token && <Login />}
-      {access_token && (
-        // <Search token={localStorage.getItem("token")} />
-        <Homes access_token={access_token} />
-      )}
-    </div>
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Routes />
+      </Router>
+    </Provider>
   );
 }
 

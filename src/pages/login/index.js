@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import { accessUrl } from "../../utils/spotify";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history.push("/");
+    }
+  });
   return (
     <div className="login">
       <img
@@ -13,5 +21,9 @@ function Login() {
     </div>
   );
 }
+
+// Login.propTypes = {
+//   history: PropTypes.object.isRequired,
+// };
 
 export default Login;
