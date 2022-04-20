@@ -1,3 +1,7 @@
+.body {
+  background-color: #bdbab5;
+}
+
 .login {
   display: grid;
   place-items: center;

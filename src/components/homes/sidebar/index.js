@@ -1,7 +1,10 @@
 import React from "react";
+// react router
 import { Link } from "react-router-dom";
+// material icons
 import { PlusCircleIcon, HomeIcon } from "@heroicons/react/outline";
-// import { url_spotify } from "../../../lib/axios";
+// prop-types
+import PropTypes from "prop-types";
 
 function Sidebar({ sidebarClickHandle, createPlaylist, list_playlist }) {
   return (
@@ -48,5 +51,11 @@ function Sidebar({ sidebarClickHandle, createPlaylist, list_playlist }) {
     </div>
   );
 }
+
+Sidebar.propTypes = {
+  list_playlist: PropTypes.array.isRequired,
+  createPlaylist: PropTypes.func.isRequired,
+  sidebarClickHandle: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

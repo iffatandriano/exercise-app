@@ -8,6 +8,9 @@ import Routes from "./Routes";
 import { Provider } from "react-redux";
 import store from "./middleware/store";
 
+// components
+import LoadingSpinner from "./components/LoadingSpinner";
+
 export const browserHistory = createBrowserHistory();
 
 function App() {

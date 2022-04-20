@@ -2,7 +2,10 @@ import React from "react";
 import millisToMinutesAndSeconds from "../../../../utils/millisToMinutesAndSeconds";
 import moment from "moment";
 
-function TrackPlaylist({ getPlaylistTrack, listTrack }) {
+// prop-types
+import PropTypes from "prop-types";
+
+function TrackPlaylist({ listTrack }) {
   return (
     <div className="grid grid-cols-3 mt-2 py-4 px-5 overflow-auto hover:bg-gray-900">
       {listTrack.length === undefined ? (
@@ -40,5 +43,9 @@ function TrackPlaylist({ getPlaylistTrack, listTrack }) {
     </div>
   );
 }
+
+TrackPlaylist.propTypes = {
+  listTrack: PropTypes.array.isRequired,
+};
 
 export default TrackPlaylist;

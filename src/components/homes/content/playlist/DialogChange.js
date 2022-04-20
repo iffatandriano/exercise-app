@@ -9,6 +9,9 @@ import {
   DialogTitle,
 } from "@mui/material";
 
+// prop-types
+import PropTypes from "prop-types";
+
 function DialogChangeDetails({
   openDialog,
   handleDialogClose,
@@ -62,5 +65,15 @@ function DialogChangeDetails({
     </div>
   );
 }
+
+DialogChangeDetails.propTypes = {
+  openDialog: PropTypes.func.isRequired,
+  handleDialogClose: PropTypes.func.isRequired,
+  setNamePlaylist: PropTypes.func.isRequired,
+  setDescriptionPlaylist: PropTypes.func.isRequired,
+  handleSaveDetails: PropTypes.func.isRequired,
+  name_playlist: PropTypes.string.isRequired,
+  description_playlist: PropTypes.string.isRequired,
+};
 
 export default DialogChangeDetails;

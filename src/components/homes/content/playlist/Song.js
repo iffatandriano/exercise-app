@@ -1,8 +1,10 @@
 import React from "react";
 import millisToMinutesAndSeconds from "../../../../utils/millisToMinutesAndSeconds";
 
+// prop-types
+import PropTypes from "prop-types";
+
 function Song({
-  tracks,
   onSelect,
   isAdded,
   image_url,
@@ -42,5 +44,15 @@ function Song({
     </div>
   );
 }
+
+Song.propTypes = {
+  onSelect: PropTypes.func.isRequired,
+  isAdded: PropTypes.bool.isRequired,
+  image_url: PropTypes.string.isRequired,
+  album_name: PropTypes.string.isRequired,
+  title_song: PropTypes.string.isRequired,
+  song_artist: PropTypes.string.isRequired,
+  duration: PropTypes.number.isRequired,
+};
 
 export default Song;
