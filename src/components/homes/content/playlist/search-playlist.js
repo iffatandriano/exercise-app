@@ -3,14 +3,17 @@ import { PlusIcon, SearchIcon, TrashIcon } from "@heroicons/react/outline";
 import { url_spotify } from "../../../../lib/axios";
 import Song from "./Song";
 
+// prop-types
+import PropTypes from "prop-types";
+
 function SearchPlaylist({
-  user_id,
+  // user_id,
   playlist_id,
   getLastPlaylist,
-  new_playlist,
+  // new_playlist,
   getPlaylistTrack,
   listTrack,
-  setIsLoading,
+  // setIsLoading,
 }) {
   const [searchKey, setSearchKey] = useState("");
   const [tracks, setTracks] = useState([]);
@@ -116,7 +119,7 @@ function SearchPlaylist({
     <>
       <div className="flex flex-col p-8">
         <span className="font-bold text-gray-300">
-          Let's find something for your playlist
+          Let${`'`}s find something for your playlist
         </span>
         <div className="flex flex-row">
           <form>
@@ -193,5 +196,12 @@ function SearchPlaylist({
     </>
   );
 }
+
+SearchPlaylist.propTypes = {
+  listTrack: PropTypes.array.isRequired,
+  playlist_id: PropTypes.string.isRequired,
+  getLastPlaylist: PropTypes.func.isRequired,
+  getPlaylistTrack: PropTypes.func.isRequired,
+};
 
 export default SearchPlaylist;

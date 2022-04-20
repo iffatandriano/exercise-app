@@ -1,6 +1,13 @@
 import React from "react";
+
+// React router
 import { useHistory } from "react-router-dom";
+
+// library icons
 import { ChevronDownIcon } from "@heroicons/react/outline";
+
+// prop-types
+import PropTypes from "prop-types";
 
 function Profile({ images_url, profile_name }) {
   const history = useHistory();
@@ -19,5 +26,10 @@ function Profile({ images_url, profile_name }) {
     </button>
   );
 }
+
+Profile.propTypes = {
+  images_url: PropTypes.string.isRequired,
+  profile_name: PropTypes.string.isRequired,
+};
 
 export default Profile;

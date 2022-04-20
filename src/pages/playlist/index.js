@@ -1,56 +1,65 @@
-import React from "react";
-// import { getMyPlaylist } from "../../services/git";
-import moment from "moment";
-import "./index.css";
-import Images from "../../components/Track/ImagesComponent";
-import Album from "../../components/Track/AlbumComponent";
-import Artist from "../../components/Track/ArtistComponent";
-// import dataSpotify from "../../utils/data";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Playlist = ({ key, plId, pl, selectedHandle, selectedItems }) => {
+// loading
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+// components
+import MainContent from "../../components/MainContent";
+
+function Playlist() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, [isLoading]);
   return (
-    <div className="container-footer">
-      {/* {console.log(pl.id)} */}
-      <div className="albums-track" id="albums-track">
-        {pl !== undefined && (
+    <MainContent>
+      <div className="flex flex-col">
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
           <>
-            <div className="playlist">
-              <Images className="pl_image" urlImage={pl.images[1].url} />
-              <div className="description-playlist">
-                <Album className="title-album" children="ALBUM" />
-                <Album className="title-song" children={pl.name} />
-                <div className="album-description">
-                  <Artist
-                    className="artist-name"
-                    children={pl.artists[0].name}
-                  />
-                  <Artist className="artist-year">
-                    &#8226; {moment(pl.release_date).format("YYYY")} &#8226;
-                  </Artist>
-                  <Artist className="artist-song">
-                    {pl.total_tracks} songs,
-                  </Artist>
-                </div>
-                {/* {console.log(selectButton)} */}
-                <button
-                  className={
-                    pl.isSelected ? "button-unselected" : "button-select"
-                  }
-                  onClick={
-                    pl.isSelected
-                      ? () => selectedHandle(false, plId)
-                      : () => selectedHandle(true, plId)
-                  }
-                >
-                  {pl.isSelected ? "UNSELECT" : "SELECT"}
+            <div className="flex w-full py-4 px-4">testing</div>
+            <div
+              style={{
+                boxShadow: "0px -1px 4px rgba(0, 0, 0, 0.138389)",
+                maxWidth: "500px",
+              }}
+              className="w-full absolute bottom-0 flex flex-wrap justify-around items-center"
+            >
+              <Link to="/home">
+                <button className="focus:outline-none flex flex-col justify-center items-center">
+                  <img src="/home.png" style={{ height: 28, width: 28 }} />
+                  <span className="text-sm text-abu">Home</span>
                 </button>
-              </div>
+              </Link>
+              <Link to="/search">
+                <button className="focus:outline-none flex flex-col justify-center items-center">
+                  <img src="/search.png" style={{ height: 28, width: 28 }} />
+                  <span className="text-sm text-abu">Cari</span>
+                </button>
+              </Link>
+              <Link to="/playlist">
+                <button className="focus:outline-none my-3 flex flex-col justify-center items-center">
+                  <img src="/playlist.png" style={{ height: 28, width: 28 }} />
+                  <span className="text-sm font-semibold">Koleksi Kamu</span>
+                </button>
+              </Link>
+              <Link to="/profile">
+                <button className="focus:outline-none flex flex-col justify-center items-center">
+                  <img src="/person.png" style={{ height: 28, width: 28 }} />
+                  <span className="text-sm text-abu ">Profil</span>
+                </button>
+              </Link>
             </div>
           </>
         )}
       </div>
-    </div>
+    </MainContent>
   );
-};
+}
 
 export default Playlist;
