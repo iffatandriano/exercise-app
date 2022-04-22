@@ -4,6 +4,14 @@ export const accountReducers = (state, action) => {
       return {
         token: action.payload,
       };
+    case "new_playlist":
+      return {
+        playlist: action.payload,
+      };
+    case "user_id":
+      return {
+        user_id: action.payload,
+      };
     default:
       return state;
   }

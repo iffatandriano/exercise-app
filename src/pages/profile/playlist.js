@@ -67,26 +67,27 @@ function ProfilePlaylist() {
                 <h1 className="font-semibold text-lg">Playlist</h1>
                 <div></div>
               </div>
-              {profilePlaylistAll.map((profile_playlist) => (
-                <div
-                  className="w-full mt-4 flex flex-row"
-                  key={profile_playlist.id}
-                >
-                  {profile_playlist.images.length > 0 ? (
-                    <img
-                      src={profile_playlist.images[0].url}
-                      alt="playlist-img"
-                      className="h-12 w-12"
-                    />
-                  ) : (
-                    <MusicNoteIcon className="h-12 w-12 border" />
-                  )}
-                  <div className="flex flex-col ml-2">
-                    <h1 className="font-bold">{profile_playlist.name}</h1>
-                    <span className="text-slate-600">0 pengikut</span>
+              {profilePlaylistAll.length > 0 &&
+                profilePlaylistAll.map((profile_playlist) => (
+                  <div
+                    className="w-full mt-4 flex flex-row"
+                    key={profile_playlist.id}
+                  >
+                    {profile_playlist.images.length > 0 ? (
+                      <img
+                        src={profile_playlist.images[0].url}
+                        alt="playlist-img"
+                        className="h-12 w-12"
+                      />
+                    ) : (
+                      <MusicNoteIcon className="h-12 w-12 border" />
+                    )}
+                    <div className="flex flex-col ml-2">
+                      <h1 className="font-bold">{profile_playlist.name}</h1>
+                      <span className="text-slate-600">0 pengikut</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
             <div
               style={{

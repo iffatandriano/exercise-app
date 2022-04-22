@@ -41,6 +41,23 @@ function Profile() {
     }
   }, []);
 
+  const handleProfileFollowing = async () => {
+    try {
+      let my_token = localStorage.getItem("token");
+      const { data, status, statusText } = await getProfileFollowing(my_token);
+
+      let my_following = data.artists.total;
+
+      if (status !== 200) {
+        console.error(statusText);
+      } else {
+        setMyFollowingProfile(my_following);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleCurrentProfile = async () => {
     try {
       let my_token = localStorage.getItem("token");
@@ -55,23 +72,6 @@ function Profile() {
       } else {
         setMyProfile(profile);
         handleProfilePlaylist(profile_id);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleProfileFollowing = async () => {
-    try {
-      let my_token = localStorage.getItem("token");
-      const { data, status, statusText } = await getProfileFollowing(my_token);
-
-      let my_following = data.artists.total;
-
-      if (status !== 200) {
-        console.error(statusText);
-      } else {
-        setMyFollowingProfile(my_following);
       }
     } catch (error) {
       console.error(error);
@@ -137,26 +137,27 @@ function Profile() {
                 </div>
                 <h1 className="font-semibold mt-4">Playlist</h1>
               </div>
-              {profilePlaylist.map((profile_playlist) => (
-                <div
-                  className="w-full mt-4 flex flex-row"
-                  key={profile_playlist.id}
-                >
-                  {profile_playlist.images.length > 0 ? (
-                    <img
-                      src={profile_playlist.images[0].url}
-                      alt="playlist-img"
-                      className="h-12 w-12"
-                    />
-                  ) : (
-                    <MusicNoteIcon className="h-12 w-12 border" />
-                  )}
-                  <div className="flex flex-col ml-2">
-                    <h1 className="font-bold">{profile_playlist.name}</h1>
-                    <span className="text-slate-600">0 pengikut</span>
+              {profilePlaylist.length > 0 &&
+                profilePlaylist.map((profile_playlist) => (
+                  <div
+                    className="w-full mt-4 flex flex-row"
+                    key={profile_playlist.id}
+                  >
+                    {profile_playlist.images.length > 0 ? (
+                      <img
+                        src={profile_playlist.images[0].url}
+                        alt="playlist-img"
+                        className="h-12 w-12"
+                      />
+                    ) : (
+                      <MusicNoteIcon className="h-12 w-12 border" />
+                    )}
+                    <div className="flex flex-col ml-2">
+                      <h1 className="font-bold">{profile_playlist.name}</h1>
+                      <span className="text-slate-600">0 pengikut</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
               <div className="mt-4">
                 {/* <Link
                   to={`/profile/playlist/${myProfile.id}`}
@@ -188,12 +189,12 @@ function Profile() {
                   <span className="text-sm text-abu">Home</span>
                 </button>
               </Link>
-              <Link to="/search">
+              {/* <Link to="/search">
                 <button className="focus:outline-none flex flex-col justify-center items-center">
                   <img src="/search.png" style={{ height: 28, width: 28 }} />
                   <span className="text-sm text-abu">Cari</span>
                 </button>
-              </Link>
+              </Link> */}
               <Link to="/playlist">
                 <button className="focus:outline-none flex flex-col justify-center items-center">
                   <img src="/playlist.png" style={{ height: 28, width: 28 }} />
