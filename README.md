@@ -5,12 +5,12 @@ My final project submission for [#GenerasiGIGIH 2.0](https://sites.google.com/an
 ## Screenshots
 
 <center>
-<img src="/docs/images/login_page.png" alt="Preview Image" />
-<img src="/docs/images/home_page.png" alt="Preview Image" />
-<img src="/docs/images/playlist_page.png" alt="Preview Image" />
-<img src="/docs/images/playlist_details.png" alt="Preview Image" />
-<img src="/docs/images/playlist_searcb.png" alt="Preview Image" />
-<img src="/docs/images/profile_page.png" alt="Preview Image" />
+<img src="/docs/images/login_page.png" alt="Preview Image" height={200} width={200} />
+<img src="/docs/images/home_page.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_page.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_details.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_search.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/profile_page.png" alt="Preview Image" height={200} width={200}/>
 </center>
 
 ## Features
