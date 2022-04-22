@@ -111,12 +111,12 @@ function Homes() {
                   <span className="font-semibold text-sm">Home</span>
                 </button>
               </Link>
-              <Link to="/search">
+              {/* <Link to="/search">
                 <button className="focus:outline-none flex flex-col justify-center items-center">
                   <img src="/search.png" style={{ height: 28, width: 28 }} />
                   <span className="text-sm text-abu">Cari</span>
                 </button>
-              </Link>
+              </Link> */}
               <Link to="/playlist">
                 <button className="focus:outline-none flex flex-col justify-center items-center">
                   <img src="/playlist.png" style={{ height: 28, width: 28 }} />

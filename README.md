@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Generasi Gigih Final Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My final project submission for [#GenerasiGIGIH 2.0](https://sites.google.com/anakbangsabisa.org/generasigigih-landingpage/home?authuser=1).
 
-## Available Scripts
+## Screenshots
 
-In the project directory, you can run:
+<center>
+<img src="/docs/images/login_page.png" alt="Preview Image" height={200} width={200} />
+<img src="/docs/images/home_page.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_page.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_details.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/playlist_search.png" alt="Preview Image" height={200} width={200}/>
+<img src="/docs/images/profile_page.png" alt="Preview Image" height={200} width={200}/>
+</center>
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🎶 Of course, you can **create playlists**
+- ✨ You can see new releases albums
+- 📘 You can see your playlist
+- 🦸‍♂️ You can see your Spotify Profile
+- 😗 etc~
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Powered by
 
-### `npm test`
+- [Create React App](https://create-react-app.dev/) to initialize the project with Javascript and TypeScript💎.
+- [React Redux](https://react-redux.js.org/) to manage the app state.
+- [Tailwindcss ⚡](https://tailwindcss.com/docs/installation) + [Material UI](https://mui.com/getting-started/installation/) to build the user interface.
+- [Jest](https://jestjs.io/) & [react testing-library](https://testing-library.com/) to test the UI and implementation. 🧪
+- Hosted on [Vercel 🚀](https://vercel.com/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Environment Variables
 
-### `npm run build`
+- `REACT_APP_CLIENT_URI_SPOTIFY` contains the app Base URL e.g. `https://localhost:3000/`
+- `REACT_APP_CLIENT_SPOTIFY` contains spotify Client Secret
+- `REACT_APP_CLIENT_SECRET` contains Spotify Client ID
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Run on Local
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ```bash
+    git clone https://github.com/iffatandriano/exercise-app
+  ```
 
-### `npm run eject`
+- Go to the project directory
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ```bash
+    cd generasi-gigih-final-project
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Install dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  ```bash
+    npm i
+  ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Set up the [environment variables](#environment-variables)
 
-## Learn More
+- Start the server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ```bash
+    npm run start
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Open http://localhost:3000 with your browser to see the result.
 
-### Code Splitting
+## Feedback
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have any feedback, you can create issue(s) [here](https://github.com/iffatandriano/exercise-app/issues)

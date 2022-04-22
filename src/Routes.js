@@ -10,6 +10,7 @@ import Search from "./pages/search";
 import Playlist from "./pages/playlist";
 import Profile from "./pages/profile";
 import ProfilePlaylist from "./pages/profile/playlist";
+import PlaylistDetails from "./pages/playlist/details";
 
 function Routes() {
   return (
@@ -21,8 +22,9 @@ function Routes() {
       {/** Dashboard */}
       <Route path="/" component={Homes} exact />
       <Route path="/home" component={Homes} exact />
-      <Route path="/search" component={Search} exact />
       <Route path="/playlist" component={Playlist} exact />
+      <Route path="/playlist/:playlistId" component={PlaylistDetails} exact />
+      <Route path="/playlist/:playlistId/search" component={Search} exact />
       <Route path="/profile" component={Profile} exact />
       {/* <Redirect to="/profile" from="/profile/playlist" /> */}
       <Route

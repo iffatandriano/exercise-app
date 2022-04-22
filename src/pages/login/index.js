@@ -25,8 +25,13 @@ function Login() {
               alt="spotify-cover"
               className="h-52 w-52"
             />
-            <h1 className="font-semibold text-xl">Putarkan musik.</h1>
-            <span className="font-semibold  text-lg ">
+            <h1
+              className="font-semibold text-xl"
+              data-testid="title-putarmusik"
+            >
+              Putarkan musik.
+            </h1>
+            <span className="font-semibold text-lg ">
               Agar asik dan buatkan playlistmu.
             </span>
             <a
