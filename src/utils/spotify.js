@@ -1,7 +1,9 @@
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 
 const clientId = process.env.REACT_APP_CLIENT_SPOTIFY;
-const redirectUri = process.env.REACT_APP_CLIENT_URI_SPOTIFY;
+const redirectUri =
+  process.env.REACT_APP_CLIENT_URI_SPOTIFY |
+  "https://iffatandriano-gengigih.vercel.app/";
 const scopes = [
   "user-read-private",
   "user-read-email",
