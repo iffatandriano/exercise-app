@@ -40,7 +40,7 @@ My final project submission for [#GenerasiGIGIH 2.0](https://sites.google.com/an
 - Clone the project
 
   ```bash
-    git clone https://github.com/iffatandriano/exercise-app
+    git clone https://github.com/iffatandriano/generasi-gigih-final-project
   ```
 
 - Go to the project directory
